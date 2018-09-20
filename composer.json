@@ -1,0 +1,23 @@
+{
+    "name": "heropoo/comment-widget",
+    "description": "comment widget",
+    "type": "library",
+    "authors": [
+        {
+            "name": "heropoo",
+            "email": "aiyouyou1000@163.com"
+        }
+    ],
+    "require": {
+        "heropoo/moon": "^0.3.3"
+    },
+    "autoload":{
+        "psr-4":{
+            "": "libraries/",
+            "App\\": "app/"
+        },
+        "files":[
+            "libraries/helpers.php"
+        ]
+    }
+}
