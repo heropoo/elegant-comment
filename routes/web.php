@@ -12,3 +12,4 @@
 $router = Moon::$app->get('router');
 
 $router->get('/', 'IndexController::index');
+$router->get('/test', 'IndexController::test');
