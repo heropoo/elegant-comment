@@ -14,5 +14,11 @@ $router = Moon::$app->get('router');
 $router->get('/', 'IndexController::index');
 $router->get('/test', 'IndexController::test');
 
-$router->get('/comment/{article_id}', 'CommentController::index');
-$router->post('/comment/{article_id}', 'CommentController::save');
+$router->group(['middleware'=>\App\Middleware\CommentAuth::class, 'prefix'=>'comment'], function ($router){
+    /**
+     * @var \Moon\Routing\Router $router
+     */
+    $router->get('/{article_id}', 'CommentController::index');
+    $router->post('/{article_id}', 'CommentController::save');
+});
+
