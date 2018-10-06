@@ -12,13 +12,34 @@ define(function(){
         console.log(id, token, container);
         var container_id = container.substr(1);
         console.log('container_id:'+container_id);
-        var comment_container = document.getElementById(container);
+        var comment_container = document.getElementById(container_id);
         if(comment_container == undefined){
             comment_container = document.createElement('div');
             comment_container.id = container_id;
             document.body.appendChild(comment_container);
         }
-        comment_container.innerText = 'comment loading';
+        var comment_css = document.createElement('div');
+        comment_css.innerHTML = '<style>' +
+            container + '{margin: 1rem;padding: 1rem;}' +
+            container + ' ul{margin: 0;padding: 0}' +
+            container + ' ul li{list-style: none;}' +
+            container + ' .red-star{color: red;}' +
+            '</style>';
+        document.body.insertBefore(comment_css, comment_container);
+
+        comment_container.innerHTML = '<div>' +
+            '<ul class="comment-list">' +
+            '<li><a href="#" target="_blank">小明</a>：写的真好👍</li>' +
+            '<li><a href="https://www.ioio.pw" target="_blank">Heropoo</a>：嘻嘻~😄😄</li>' +
+            '</ul>' +
+            '<form action="#" id="'+container_id+'_form">' +
+            '<div class="row"><label>您的留言 <span class="red-star">*</span>：</label><textarea name="content" id="'+container_id+'_content" cols="10" rows="5" placeholder="请输入您的留言" required></textarea></div>' +
+            '<div class="row"><label>您的大名 <span class="red-star">*</span>：</l30abel><input type="text" name="username" id="'+container_id+'_username" value="" placeholder="请输入您的大名" required></div>' +
+            '<div class="row"><label>电子邮件 <span class="red-star">*</span>：</l30abel><input type="email" name="email" id="'+container_id+'_email" value="" placeholder="请输入您的Email" required></div>' +
+            '<div class="row"><label>个人网址 &nbsp;&nbsp;：</label><input type="url" name="website" id="'+container_id+'_email" value="" placeholder="请输入您的个人网站"></div>' +
+            '<div class="row"><label></label><button>发布</button></div>' +
+            '</form>'+
+            '</div>';
     };
 
     return {

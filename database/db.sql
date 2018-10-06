@@ -12,6 +12,7 @@ CREATE TABLE `cw_account` (
 DROP TABLE IF EXISTS `cw_user`;
 CREATE TABLE `cw_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
   `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
   `head_img` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
   `sex` tinyint(1) NOT NULL DEFAULT '0' COMMENT '性别：0未知 1男 2女',
