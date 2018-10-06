@@ -13,7 +13,7 @@ use Moon\Controller;
 class IndexController extends Controller
 {
     public function index(){
-        return 'index';
+        return '<p style="text-align: center;font-size: 2rem;margin-top: 3rem;">Welcome to use <a href="https://github.com/heropoo/comment-widget.git">comment-widget</a>.</p>';
     }
 
     public function test(){
