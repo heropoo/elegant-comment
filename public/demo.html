@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo</title>
+    <link rel="stylesheet" href="assets/css/default.css">
 </head>
 <body>
 <div id="comment"></div>
 <script src="assets/js/require.js"></script>
 <script>
     require.config({
-        baseUrl: 'assets/js',
         paths: {
-            'comment': 'comment'
+            'comment': 'assets/js/comment',
         }
     });
     require(['comment'], function(comment){

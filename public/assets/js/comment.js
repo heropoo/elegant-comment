@@ -18,14 +18,7 @@ define(function(){
             comment_container.id = container_id;
             document.body.appendChild(comment_container);
         }
-        var comment_css = document.createElement('div');
-        comment_css.innerHTML = '<style>' +
-            container + '{margin: 1rem;padding: 1rem;}' +
-            container + ' ul{margin: 0;padding: 0}' +
-            container + ' ul li{list-style: none;}' +
-            container + ' .red-star{color: red;}' +
-            '</style>';
-        document.body.insertBefore(comment_css, comment_container);
+        comment_container.className = 'comment-container';
 
         comment_container.innerHTML = '<div>' +
             '<ul class="comment-list">' +

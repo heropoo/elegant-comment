@@ -25,3 +25,7 @@
 .comment-container a:hover {
     text-decoration: underline;
 }
+
+.comment-container .red-star{color: red;}
+.comment-container ul{margin: 0;padding: 0}
+.comment-container ul li{list-style: none;}
