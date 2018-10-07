@@ -1,0 +1,33 @@
+.comment-container{
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    word-wrap:break-word;
+}
+
+.comment-container *{
+    box-sizing: border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.comment-container *:disabled {
+    cursor: not-allowed;
+}
+
+.comment-container a,
+.comment-container a:visited {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.comment-container a:hover {
+    text-decoration: underline;
+}
+
+.comment-container .red-star{color: red;}
+.comment-container ul{margin: 0;padding: 0}
+.comment-container ul li{list-style: none;}
+
+.red-star{color: red;}
