@@ -7,6 +7,7 @@
  */
 namespace App\Controllers;
 
+use App\Models\Test;
 use App\Models\User;
 use Moon\Controller;
 
@@ -17,22 +18,23 @@ class IndexController extends Controller
     }
 
     public function test(){
-        //var_dump(\Moon::$app->get('db'));
-        //$user = new User();
-        //$user->nickname = 'ttt1';
-        //$user->email = 'ttt1@ttt.com';
-        //$user->save();
-        //var_dump($user);
-        $list = User::find()->where('status=1')->all();
-        $user = User::find()->first();
-        var_dump($user->updated_at);
-        //var_dump($list);
-        foreach($list as $value){
-            echo $value->id.' nickname:'.$value->nickname.' email:'.$value->email.' status:'.$value->status.' created_at:'.$value->created_at;
-            echo '<br>';
-            //var_dump($value->toArray());
-            //$value->status = 1;
-            //$value->save();
+        $model = new Test();
+        $res = $model->save();
+        echo $model->getLastSql();
+        var_dump($res);exit;
+        //$model->order = 11;
+        //var_dump($model->toArray());
+        $model = Test::find()->first();
+        echo $model->getLastSql();
+        //var_dump(json_encode($model));
+        try{
+            $model->order += 1;
+            $res = $model->save();
+
+        }catch (\Exception $e){
+            echo $e->getMessage();
         }
+        echo $model->getLastSql();
+        //var_dump($res);
     }
 }

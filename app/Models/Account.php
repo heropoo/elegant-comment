@@ -20,6 +20,7 @@ namespace App\Models;
 class Account extends Model
 {
     protected $tableName = '{{account}}';
+    protected $primaryKey = 'id';
 
     const STATUS_NORMAL = 0;
     const STATUS_FORBIDDEN = -1;

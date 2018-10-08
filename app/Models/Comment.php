@@ -26,4 +26,5 @@ namespace App\Models;
 class Comment extends Model
 {
     protected $tableName = '{{comment}}';
+    protected $primaryKey = 'id';
 }
