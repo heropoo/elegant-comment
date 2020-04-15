@@ -9,8 +9,7 @@
         }
     ],
     "require": {
-        "heropoo/moon": "^0.3.3",
-        "heropoo/pagination": "v0.1.1"
+        "heropoo/moon": "^0.11.4"
     },
     "autoload":{
         "psr-4":{
