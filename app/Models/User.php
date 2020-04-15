@@ -1,29 +1,27 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ttt
- * Date: 2018/7/12
- * Time: 23:29
+ * Date: 2018/1/12
+ * Time: 16:12
  */
 namespace App\Models;
 
-/**
- * Class User
- * @property string $nickname
- * @property string $head_img
- * @property int $sex
- * @property string $email
- * @property string $website
- * @property string $password
- * @property string $salt
- * @property int $status
- * @property int $account_id
- * @property string $created_at
- * @property string $updated_at
- * @package App\Models
- */
-class User extends Model
+
+use Moon\Db\Table;
+
+class User extends Table
 {
-    protected $tableName = '{{user}}';
     protected $primaryKey = 'id';
+
+    public static function tableName()
+    {
+        return '{{user}}';
+    }
+
+    /**
+     * @return \Moon\Db\Connection
+     */
+    public static function getDb()
+    {
+        return \App::$container->get('db');
+    }
 }

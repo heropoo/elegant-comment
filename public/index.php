@@ -5,8 +5,7 @@
  * @datetime 2018-09-20 18:25
  */
 
-require '../vendor/autoload.php';
-
+require __DIR__ . '/../vendor/autoload.php';
 $app = new \Moon\Application(dirname(__DIR__));
 $app->run();
 

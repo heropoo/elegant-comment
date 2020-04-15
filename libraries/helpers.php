@@ -1,7 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ttt
  * Date: 2017/6/16
  * Time: 10:31
  */
+
+/**
+ * @param int $code
+ * @param string $msg
+ * @param array $data
+ * @return array
+ */
+function format_json_response($code, $msg = 'OK', array $data = [])
+{
+    return [
+        'code' => $code,
+        'msg' => $msg,
+        'data' => (object)$data
+    ];
+}

@@ -1,30 +1,27 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ttt
- * Date: 2018/9/24
- * Time: 22:39
+ * Date: 2020/4/15
+ * Time: 15:11
  */
 
 namespace App\Models;
 
-/**
- * Class Comment
- * @property int $article_id
- * @property int $parent_comment_id
- * @property int $user_id
- * @property string $user_nickname
- * @property string $user_head_img
- * @property int $user_sex
- * @property string $content
- * @property int $account_id
- * @property int $status
- * @property string $created_at
- * @property string $updated_at
- * @package App\Models
- */
-class Comment extends Model
+use Moon\Db\Table;
+
+class Comment extends Table
 {
-    protected $tableName = '{{comment}}';
     protected $primaryKey = 'id';
+
+    public static function tableName()
+    {
+        return '{{comment}}';
+    }
+
+    /**
+     * @return \Moon\Db\Connection
+     */
+    public static function getDb()
+    {
+        return \App::$container->get('db');
+    }
 }
