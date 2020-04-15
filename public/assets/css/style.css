@@ -1,0 +1,88 @@
+.comment-container {
+    border: 1px solid #dedede;
+    width: 100%;
+    padding: 0.5rem 1rem;
+}
+
+.comment-container input{
+    border: 0;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    line-height: 2rem;
+}
+
+.comment-container textarea{
+    border: 0;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    line-height: 1.25rem;
+}
+
+.comment-container .comment-input-group{
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    border-bottom: 1px dashed #ccc;
+}
+
+.comment-container .comment-input-group input {
+    width: 30%;
+}
+
+.comment-container .comment-btn-group{
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    /*flex-direction: column-reverse;*/
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.comment-container .comment-toolbar{
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    /*flex-direction: column-reverse;*/
+    flex-direction: column;
+    align-items: flex-end;
+    /*line-height: 3rem;*/
+    margin: 0.5rem 0 1rem 0;
+}
+
+.comment-container textarea {
+    width: 100%;
+    height: 7rem;
+    border: none;
+}
+
+.comment-container .comment-submit-btn{
+    border-radius: 3px;
+    color: #333;
+    background: #ededed;
+    line-height: 1.5rem;
+    width: 3.5rem;
+    /*order: 1*/
+}
+
+.comment-container .comment-submit-btn:hover{
+    border: 1px solid #0a90f5;
+    background-color: #fff;
+}
+
+.comment-container .comment-submit-btn:focus{
+    border: 1px solid #0a90f5;
+    background-color: #fff;
+    outline: none;
+}
+
+.comment-container .comment-face-btn{
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    margin-right: 0.1rem;
+}
+
+.comment-container .comment-copyright{
+    line-height: 2rem;
+    font-size: 0.8rem;
+    color: #666;
+    text-align: right;
+}
+

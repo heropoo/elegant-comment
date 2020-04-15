@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "ext-json": "*",
         "heropoo/moon": "^0.11.4"
     },
     "autoload":{

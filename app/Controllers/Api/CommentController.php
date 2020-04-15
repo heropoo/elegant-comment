@@ -30,11 +30,12 @@ class CommentController
 //        ];
 
         return format_json_response(200);
-
     }
 
     public function create(Request $request)
     {
-        var_dump($request->all());
+        //var_dump($request->getRawContent());
+        $data = json_decode($request->getRawContent(), 1);
+        var_dump($data);
     }
 }
