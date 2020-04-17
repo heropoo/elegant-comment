@@ -9,7 +9,8 @@ namespace App\Controllers;
 
 class IndexController
 {
-    public function index(){
-        return 'welcome';
+    public function index()
+    {
+        return '<a href="https://github.com/heropoo/pretty-comment">Pretty Comment</a> v0.1';
     }
 }

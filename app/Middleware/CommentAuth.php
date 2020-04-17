@@ -1,7 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ttt
  * Date: 2018/9/24
  * Time: 11:45
  */
@@ -10,7 +8,8 @@ namespace App\Middleware;
 
 use App\Models\Account;
 use Closure;
-use Symfony\Component\HttpFoundation\Request;
+use Moon\Controller;
+use Moon\Request\Request;
 
 class CommentAuth
 {
@@ -40,7 +39,8 @@ class CommentAuth
             ];
         }
 
-        \Moon::$app->add('account', $account);
+        //\Moon::$app->add('account', $account);
+        //\App::$container->add('account')
 
         return $next($request);
     }
