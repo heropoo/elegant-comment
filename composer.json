@@ -1,24 +1,27 @@
 {
-    "name": "heropoo/comment-widget",
-    "description": "comment widget",
-    "type": "library",
-    "authors": [
-        {
-            "name": "heropoo",
-            "email": "aiyouyou1000@163.com"
-        }
-    ],
-    "require": {
-        "ext-json": "*",
-        "heropoo/moon": "^0.11.4"
-    },
-    "autoload":{
-        "psr-4":{
-            "": "libraries/",
-            "App\\": "app/"
-        },
-        "files":[
-            "libraries/helpers.php"
-        ]
+  "name": "heropoo/pretty-comment",
+  "description": "Pretty Comment",
+  "type": "library",
+  "authors": [
+    {
+      "name": "heropoo",
+      "email": "aiyouyou1000@163.com"
     }
+  ],
+  "require": {
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "heropoo/moon": "^0.11.4",
+    "nesbot/carbon": "^2.32",
+    "heropoo/pagination": "^0.2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "libraries/",
+      "App\\": "app/"
+    },
+    "files": [
+      "libraries/helpers.php"
+    ]
+  }
 }

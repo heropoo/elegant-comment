@@ -4,8 +4,8 @@ CREATE TABLE `cw_account` (
   `app_id` varchar(255) NOT NULL COMMENT 'APP_ID',
   `app_key` varchar(255) NOT NULL COMMENT 'APP_KEY',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0正常 -1禁止',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='账户表';
 
@@ -17,8 +17,8 @@ CREATE TABLE `cw_user` (
   `email` varchar(255) NOT NULL COMMENT 'E-mail',
   `website` varchar(255) NOT NULL DEFAULT '' COMMENT '网址',
   `account_id` int(11) unsigned NOT NULL COMMENT '账号id',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `account_id` (`account_id`)
@@ -34,8 +34,8 @@ CREATE TABLE `cw_comment` (
   `user_head_img` varchar(255) NOT NULL COMMENT '头像',
   `content` varchar(500) NOT NULL COMMENT '内容',
   `account_id` int(11) unsigned NOT NULL COMMENT '账号id',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `article_id` (`article_id`),
   KEY `user_id` (`user_id`),

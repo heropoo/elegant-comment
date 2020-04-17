@@ -9,9 +9,20 @@ namespace App\Models;
 
 use Moon\Db\Table;
 
+/**
+ * Class App\Models\Account 
+ * @property integer $id 
+ * @property string $app_id APP_ID
+ * @property string $app_key APP_KEY
+ * @property integer $status 0正常 -1禁止
+ * @property string $created_at 
+ * @property string $updated_at 
+ */
 class Account extends Table
 {
     protected $primaryKey = 'id';
+
+    const STATUS_NORMAL = 0;
 
     public static function tableName()
     {

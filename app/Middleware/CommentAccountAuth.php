@@ -8,10 +8,9 @@ namespace App\Middleware;
 
 use App\Models\Account;
 use Closure;
-use Moon\Controller;
 use Moon\Request\Request;
 
-class CommentAuth
+class CommentAccountAuth
 {
     /**
      * @param Request $request
@@ -20,18 +19,22 @@ class CommentAuth
      */
     public function handle($request, Closure $next)
     {
-        $token = $request->headers->get('Comment-Auth-Token');
-        if (empty($token)) {
+        $app_id = $request->header('app-id');
+        $app_key = $request->header('app-key');
+
+        if (empty($app_id) || empty($app_key)) {
             return [
-                'code' => 400,
+                'code' => 401,
                 'msg' => 'Unauthorized.'
             ];
         }
 
-        // 5ba8f625a8aa95ba8f625a8aab5ba8f6
-        //echo uniqid().uniqid().uniqid();
+        //todo token
 
-        $account = Account::find()->where('token=? and status=' . Account::STATUS_NORMAL, [$token])->first();
+
+        $account = Account::find()
+            ->where('app_id=? and app_key=? and status=' . Account::STATUS_NORMAL, [$app_id, $app_key])
+            ->first();
         if (empty($account)) {
             return [
                 'code' => 401,
@@ -39,8 +42,7 @@ class CommentAuth
             ];
         }
 
-        //\Moon::$app->add('account', $account);
-        //\App::$container->add('account')
+        \App::$container->add('account', $account);
 
         return $next($request);
     }
