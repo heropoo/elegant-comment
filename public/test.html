@@ -10,36 +10,90 @@
 </head>
 <body>
 <div id="comment" style="width: 600px"></div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script type="text/html" id="commentTpl">
     <div class="comment-container">
-        <div class="comment-input-group">
-            <input type="text" name="nickname" value="" placeholder="昵称">
-            <input type="email" name="email" value="" placeholder="邮箱">
-            <input type="url" name="website" value="" placeholder="网站(https://)">
-        </div>
-        <div>
-            <textarea name="comment" placeholder="说点什么吧～"></textarea>
-        </div>
-        <div class="comment-toolbar" style="display: none">
+        <div class="comment-form">
+            <div class="comment-input-group">
+                <input type="text" name="nickname" value="" placeholder="昵称">
+                <input type="email" name="email" value="" placeholder="邮箱">
+                <input type="url" name="website" value="" placeholder="网站(https://)">
+            </div>
             <div>
-                <a href="javascript:;" class="comment-face-btn">表情</a>
-                ｜
-                <a href="javascript:;" class="comment-face-btn">预览</a>
+                <textarea name="comment" placeholder="说点什么吧～"></textarea>
+            </div>
+            <div class="comment-toolbar" style="display: none">
+                <div>
+                    <a href="javascript:;" class="comment-face-btn">表情</a>
+                    ｜
+                    <a href="javascript:;" class="comment-face-btn">预览</a>
+                </div>
+            </div>
+            <div class="comment-btn-group">
+                <button class="comment-submit-btn">回复</button>
+            </div>
+            <div class="comment-copyright">
+                &copy; Powered By <a href="https://github.com/heropoo/pretty-comment">PrettyComment</a>
             </div>
         </div>
-        <div class="comment-btn-group">
-            <button class="comment-submit-btn">回复</button>
-        </div>
-        <div class="comment-copyright">
-            &copy; Powered By PrettyComment
+
+        <div class="comment-total"> 共有 0 条评论</div>
+
+        <div class="comment-list">
+
+            <!-- <div class="comment-item">
+                <div class="comment-avatar">
+                    <img src="images/10.jpeg" alt="">
+                </div>
+                <div style="border: 1px solid #ccc">
+                    <div>小明</div>
+                    <div>2020-04-17 17:54</div>
+                    <div style="color: #333">啊哈哈哈哈哈哈哈4234234哈哈哈哈哈哈哈哈哈哈</div>
+                </div>
+            </div>
+
+            -->
+
         </div>
     </div>
 </script>
 <script>
-    var container = document.getElementById('comment');
-    var tpl = document.getElementById('commentTpl').innerHTML;
-    console.log(tpl);
+    let container = document.getElementById('comment');
+    let tpl = document.getElementById('commentTpl').innerHTML;
+    // console.log(tpl);
     container.innerHTML = tpl;
+
+    let app_id = '0x007';
+    let app_key = '123123';
+    let article_id = window.location.pathname;
+    axios.get("api/comment", {
+        headers: {'app-id': app_id, 'app-key': app_key},
+        params: {article_id: article_id}
+    }).then(function (response) {
+        console.log(response);
+        if (response.status === 200) {
+            if (response.data.code === 0) {
+                container.getElementsByClassName('comment-total')[0].innerHTML = '共有 ' + response.data.data.total + ' 条评论';
+                let list = response.data.data.list;
+                for (let i = 0; i < list.length; i++) {
+                    tpl += '<div class="comment-item">\n' +
+                        '    <div class="comment-avatar">\n' +
+                        '        <img src="' + list[i].user_head_img + '" alt="">\n' +
+                        '    </div>\n' +
+                        '    <div>\n' +
+                        '        <div><span style="font-weight: bold">' + list[i].user_nickname +'</span> <span>'+ list[i].created_at + '</span></div>\n' +
+                        '        <div style="color: #333;">' + list[i].content + '</div>\n' +
+                        '    </div>\n' +
+                        '</div>';
+                }
+                container.getElementsByClassName('comment-list')[0].innerHTML = tpl;
+            }
+        } else {
+            alert('网络请求失败');
+        }
+    });
 </script>
 </body>
 </html>

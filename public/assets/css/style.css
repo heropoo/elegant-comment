@@ -1,24 +1,24 @@
-.comment-container {
+.comment-container .comment-form {
     border: 1px solid #dedede;
     width: 100%;
     padding: 0.5rem 1rem;
 }
 
-.comment-container input{
+.comment-container input {
     border: 0;
     outline: none;
     background-color: rgba(0, 0, 0, 0);
     line-height: 2rem;
 }
 
-.comment-container textarea{
+.comment-container textarea {
     border: 0;
     outline: none;
     background-color: rgba(0, 0, 0, 0);
     line-height: 1.25rem;
 }
 
-.comment-container .comment-input-group{
+.comment-container .comment-input-group {
     display: flex;
     display: -webkit-flex; /* Safari */
     border-bottom: 1px dashed #ccc;
@@ -28,7 +28,7 @@
     width: 30%;
 }
 
-.comment-container .comment-btn-group{
+.comment-container .comment-btn-group {
     display: flex;
     display: -webkit-flex; /* Safari */
     /*flex-direction: column-reverse;*/
@@ -36,7 +36,7 @@
     align-items: flex-end;
 }
 
-.comment-container .comment-toolbar{
+.comment-container .comment-toolbar {
     display: flex;
     display: -webkit-flex; /* Safari */
     /*flex-direction: column-reverse;*/
@@ -52,7 +52,7 @@
     border: none;
 }
 
-.comment-container .comment-submit-btn{
+.comment-container .comment-submit-btn {
     border-radius: 3px;
     color: #333;
     background: #ededed;
@@ -61,28 +61,58 @@
     /*order: 1*/
 }
 
-.comment-container .comment-submit-btn:hover{
+.comment-container .comment-submit-btn:hover {
     border: 1px solid #0a90f5;
     background-color: #fff;
 }
 
-.comment-container .comment-submit-btn:focus{
+.comment-container .comment-submit-btn:focus {
     border: 1px solid #0a90f5;
     background-color: #fff;
     outline: none;
 }
 
-.comment-container .comment-face-btn{
+.comment-container .comment-face-btn {
     text-decoration: none;
     color: #333;
     font-size: 0.9rem;
     margin-right: 0.1rem;
 }
 
-.comment-container .comment-copyright{
+.comment-container .comment-copyright {
     line-height: 2rem;
     font-size: 0.8rem;
     color: #666;
     text-align: right;
+}
+
+.comment-container .comment-total {
+    line-height: 2rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.comment-container .comment-list {
+
+}
+
+.comment-container .comment-list img {
+    height: 4rem;
+}
+
+.comment-container .comment-item {
+    margin-left: 1rem;
+    display: flex;
+    line-height: 1.5rem;
+    font-size: 0.8rem;
+    color: #666;
+    border-bottom: 1px dashed #ccc;
+    margin-top: 1rem;
+}
+
+.comment-container .comment-avatar {
+    border-radius: 2rem;
+    /*border: 1px solid #ccc;*/
+    margin-right: 1rem;
 }
 

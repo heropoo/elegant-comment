@@ -39,6 +39,7 @@ class CommentController
             'list' => $list,
             'current_page' => $paginate->getCurrentPage(),
             'page_total' => $paginate->getTotalPage(),
+            'total' => $total
         ]);
     }
 
