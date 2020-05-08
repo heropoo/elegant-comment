@@ -89,6 +89,10 @@ class CommentController
         $user->nickname = $nickname;
         if (strlen($website) > 0) {
             $user->website = $website;
+        } else {
+            if ($user->website) {
+                $website = $user->website;
+            }
         }
         $user->updated_at = $now;
         $res = $user->save();
