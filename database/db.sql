@@ -20,8 +20,7 @@ CREATE TABLE `cw_user` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `account_id` (`account_id`)
+  UNIQUE KEY `email_account_id` (`email`, `account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
 
 DROP TABLE IF EXISTS `cw_comment`;
