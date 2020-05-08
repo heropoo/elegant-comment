@@ -54,7 +54,7 @@ const commentTpl = `
 class PrettyComment {
 
     constructor(config) {
-        this.api = '//p.comment.com';
+        this.api = '//p.metmoon.com';
         //this.api = '//127.0.0.1:4000';
         this.app_id = config.app_id;
         this.app_key = config.app_key;
