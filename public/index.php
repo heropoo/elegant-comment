@@ -15,7 +15,7 @@ $origins = [
 
 // 获取当前跨域域名
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
-error_log(__FILE__.':origin:'.$origin, 3, '/tmp/comment.log');
+//error_log(__FILE__.':origin:'.$origin, 3, '/tmp/comment.log');
 if (in_array($origin, $origins)) {
     // 允许 $originarr 数组内的 域名跨域访问
     header('Access-Control-Allow-Origin:' . $origin);

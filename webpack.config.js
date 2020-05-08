@@ -1,20 +1,21 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'development',
     entry: './static/src/index.js',
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'public')
+        path: path.resolve(__dirname, 'public/dist'),
+        filename: 'pretty-comment.js'
     },
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader'
+                test: /\.css$/, use: [
+                    {loader: "style-loader"},
+                    {loader: "css-loader"}
                 ]
-            }
+            },
+            {test: /\.txt$/, use: 'raw-loader'}
         ]
     }
 };
