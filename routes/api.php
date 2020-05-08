@@ -5,4 +5,4 @@
  */
 
 $router->get('comment', 'CommentController::index');
-$router->post('comment/create', 'CommentController::create');
+$router->post('comment', 'CommentController::create');
