@@ -8,6 +8,8 @@
 $origins = [
     'https://metmoon.com',
     'http://metmoon.com',
+    'https://www.metmoon.com',
+    'http://www.metmoon.com',
     'http://127.0.0.1:4000',
 ];
 
@@ -23,7 +25,6 @@ if (in_array($origin, $origins)) {
     // 响应头设置
     header('Access-Control-Allow-Headers:x-requested-with,Content-Type,App-Id,App-Key');
 }
-
 
 require __DIR__ . '/../vendor/autoload.php';
 $app = new \Moon\Application(dirname(__DIR__));
