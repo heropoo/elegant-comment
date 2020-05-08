@@ -18,7 +18,7 @@
     border: 0;
     outline: none;
     background-color: rgba(0, 0, 0, 0);
-    line-height: 1.25rem;
+    line-height: 2rem;
 }
 
 .comment-container .comment-input-group {
@@ -106,8 +106,8 @@
 .comment-container .comment-item {
     margin-left: 1rem;
     display: flex;
-    line-height: 1.5rem;
-    font-size: 0.8rem;
+    line-height: 2rem;
+    font-size: 1rem;
     color: #666;
     border-bottom: 1px dashed #ccc;
     margin-top: 1rem;
