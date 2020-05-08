@@ -1,23 +1,31 @@
 {
-  "name": "comment",
-  "version": "1.0.0",
-  "description": "",
+  "name": "pretty-comment",
+  "version": "0.1.0",
+  "description": "Pretty Comment System",
+  "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heropoo/pretty-comment.git"
+  },
+  "keywords": [
+    "comment",
+    "comment-system"
+  ],
+  "author": "Heropoo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heropoo/pretty-comment/issues"
+  },
+  "homepage": "https://github.com/heropoo/pretty-comment#readme",
   "devDependencies": {
-    "css-loader": "^1.0.0",
-    "style-loader": "^0.23.0",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "lodash": "^4.17.11"
+    "axios": "^0.19.2"
   }
 }
