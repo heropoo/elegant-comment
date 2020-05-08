@@ -31,7 +31,7 @@ class CommentController
 
         $paginate = new Pagination($total, $page_size);
 
-        $url = 'http://pc.metmoon.com';
+        $url = '//p.metmoon.com';
         $list = Comment::find()->select('user_nickname,user_head_img,user_website,content,created_at')
             ->where('article_id=? and account_id=?', [$article_id, $account->id])
             ->limit($page_size)->offset($paginate->getOffset())->order('id desc')->all();
