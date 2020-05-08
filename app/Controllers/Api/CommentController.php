@@ -31,10 +31,13 @@ class CommentController
 
         $paginate = new Pagination($total, $page_size);
 
+        $url = 'http://pc.metmoon.com';
         $list = Comment::find()->select('user_nickname,user_head_img,user_website,content,created_at')
             ->where('article_id=? and account_id=?', [$article_id, $account->id])
             ->limit($page_size)->offset($paginate->getOffset())->order('id desc')->all();
-
+        foreach ($list as $row) {
+            $row->user_head_img = $url . $row->user_head_img;
+        }
         return format_json_response(0, 'OK', [
             'list' => $list,
             'current_page' => $paginate->getCurrentPage(),
