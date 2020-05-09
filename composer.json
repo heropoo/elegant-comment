@@ -23,5 +23,8 @@
     "files": [
       "libraries/helpers.php"
     ]
+  },
+  "require-dev": {
+    "swoole/ide-helper": "^4.5"
   }
 }
