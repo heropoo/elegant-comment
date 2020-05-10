@@ -61,7 +61,7 @@
     background: #ededed;
     line-height: 2.5rem;
     width: 4.5rem;
-    /*order: 1*/
+    border: 1px solid #fff;
 }
 
 .comment-container .comment-submit-btn:hover {

@@ -5,6 +5,9 @@
  * @datetime 2018-09-20 18:25
  */
 
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'On');
+
 $origins = [
     'https://metmoon.com',
     'https://www.metmoon.com',
