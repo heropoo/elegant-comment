@@ -77,7 +77,7 @@ class CommentController
 
         $now = Carbon::now()->toDateTimeString();
 
-        $user = User::find()->where('email=?', [$email])->first();
+        $user = User::find()->where('email=? and account_id=?', [$email, $account->id])->first();
         if (!$user) {
             $user = new User();
             $user->email = $email;
