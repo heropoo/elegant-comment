@@ -79,8 +79,12 @@ class SwooleHttpServerCommand
         if ($daemon) {
             $httpServer->set(['daemonize' => true]);
         }
-        $httpServer->set(['worker_num' => 20]);
-        $httpServer->set(['log_file' => $this->log_file]);
+        $httpServer->set([
+            'worker_num' => 20,
+            'max_wait_time' => 60, //设置 Worker 进程收到停止服务通知后最大等待时间【默认值：3】
+            'reload_async' => true,
+            'log_file' => $this->log_file
+        ]);
 
         $app = new Application($this->root_path);
 

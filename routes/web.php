@@ -9,6 +9,6 @@
  */
 
 $router->get('/', 'IndexController::index');
-$router->get('/test', 'IndexController::test');
+$router->controller('/test', 'TestController');
 
 
