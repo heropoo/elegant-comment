@@ -103,22 +103,30 @@ class SwooleHttpServerCommand
     public function start($host, $port, $daemon)
     {
         echo "Starting http server\n";
-        $server = new Server($host, $port);
+        $httpServer = new Server($host, $port);
         if ($daemon) {
-            $server->set(['daemonize' => true]);
+            $httpServer->set(['daemonize' => true]);
         }
-        $server->set(['worker_num' => 20]);
-        $server->set(['log_file' => $this->log_file]);
+        $httpServer->set(['worker_num' => 20]);
+        $httpServer->set(['log_file' => $this->log_file]);
 
         $app = new Application($this->root_path);
 
-        $server->on('request', function (Request $request, Response $response) use ($app) {
-            $app->handleSwooleRequest($request, $response);
+        $httpServer->on('request', function (Request $request, Response $response) use ($app) {
+            $res = $app->handleSwooleRequest($request, $response);
+
+            //access log
+            $server = $request->server;
+            $msg = '[' . date('Y-m-d H:i:s') . '] ' . $server['remote_addr'] . ':' . $server['remote_port']
+                . ' ' . $server['request_method'] . ':' . $server['path_info'];
+            $msg .= isset($server['query_string']) ? '?' . $server['query_string'] : '';
+            $msg .= ' ' . $res->getStatusCode();
+            echo $msg . PHP_EOL;
         });
 
         file_put_contents($this->last_config_file, json_encode(['host' => $host, 'port' => $port, 'daemon' => $daemon]));
 
-        $server->on('start', function (Server $server) use ($host, $port) {
+        $httpServer->on('start', function (Server $server) use ($host, $port) {
             if ($host == '0.0.0.0') {
                 $host = '127.0.0.1';
             }
@@ -126,12 +134,12 @@ class SwooleHttpServerCommand
             file_put_contents($this->pid_file, $server->master_pid . "\n" . $server->manager_pid);
         });
 
-        $server->on('shutdown', function () {
+        $httpServer->on('shutdown', function () {
             echo "Http server is shutdown \n";
             @unlink($this->pid_file);
         });
 
-        $server->start();
+        $httpServer->start();
     }
 
     protected function stop()
