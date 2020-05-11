@@ -36,53 +36,48 @@ use Moon\Application;
 //});
 //
 //$server->start();
-
-$command = new HttpServerCommand();
+$command = new SwooleHttpServerCommand();
 $command->execute();
 
 
-class HttpServerCommand
+class SwooleHttpServerCommand
 {
-    protected $name = 'http-server';
+    protected $name;
     protected $pid_file;
     protected $last_config_file;
     protected $log_file;
+    protected $root_path;
 
     public function __construct()
     {
-        $root_path = dirname(__DIR__);
-        $this->pid_file = $root_path . '/runtime/' . $this->name . '.pid';
-        $this->last_config_file = $root_path . '/runtime/' . $this->name . '.json';
-        $this->log_file = $root_path . '/runtime/logs/' . $this->name . '.log';
-        if (!is_dir($root_path . '/runtime/logs')) {
-            mkdir($root_path . '/runtime/logs');
+        $this->root_path = dirname(__DIR__);
+        $this->name = basename(__FILE__);
+        $this->pid_file = $this->root_path . '/runtime/' . $this->name . '.pid';
+        $this->last_config_file = $this->root_path . '/runtime/' . $this->name . '.json';
+        $this->log_file = $this->root_path . '/runtime/logs/' . $this->name . '.log';
+        if (!is_dir($this->root_path . '/runtime/logs')) {
+            mkdir($this->root_path . '/runtime/logs');
         }
     }
 
     public function execute()
     {
-//        $action = $input->getArgument('action');
         global $argv;
         global $argc;
-        //var_dump($argc);exit;
         if ($argc < 2) {
-            die("USAGE <action> [option]" . PHP_EOL . "action: start|stop|status|restart|reload");
+            die("USAGE [option1,[option2]] <action>" . PHP_EOL . "action: start|stop|status|restart|reload");
         }
-        //$action = $argv[2];
 
-        //todo
-        $options = getopt("h::p::d::", ['host:', 'port:', 'daemon:'], $optind);
-        var_dump($optind);
-        var_dump($options);
+        $options = getopt("h::p::d", [], $optind);
         $pos_args = array_slice($argv, $optind);
 
-        var_dump($pos_args);
-        exit;
-        $host = $input->getOption('host');
-        $port = $input->getOption('port');
+        $host = $options['h'] ?? '0.0.0.0';
+        $port = $options['p'] ?? '8080';
+        $daemon = isset($options['d']);
+        $action = $pos_args[0] ?? '';
 
         if ($action == 'start') {
-            $this->start($host, $port);
+            $this->start($host, $port, $daemon);
         } else if ($action == 'stop') {
             $this->stop();
         } else if ($action == 'restart') {
@@ -93,33 +88,35 @@ class HttpServerCommand
             }
             echo PHP_EOL;
             $config = json_decode(file_get_contents($this->last_config_file), 1);
-            $this->start($config['host'], $config['port']);
+            $this->start($config['host'], $config['port'], $config['daemon']);
         } else if ($action == 'status') {
             $this->status();
         } else if ($action == 'reload') {
             //todo
+        } else {
+            die('Need param "action": start|stop|status|restart|reload');
         }
-//        var_dump($input->getArguments());
-//        var_dump($input->getOptions());
 
         return 0;
     }
 
-    public function start($host, $port)
+    public function start($host, $port, $daemon)
     {
         echo "Starting http server\n";
         $server = new Server($host, $port);
-        $server->set(['daemonize' => true]);
+        if ($daemon) {
+            $server->set(['daemonize' => true]);
+        }
         $server->set(['worker_num' => 20]);
         $server->set(['log_file' => $this->log_file]);
 
-        $app = new Application(ROOT_PATH);
+        $app = new Application($this->root_path);
 
         $server->on('request', function (Request $request, Response $response) use ($app) {
             $app->handleSwooleRequest($request, $response);
         });
 
-        file_put_contents($this->last_config_file, json_encode(['host' => $host, 'port' => $port]));
+        file_put_contents($this->last_config_file, json_encode(['host' => $host, 'port' => $port, 'daemon' => $daemon]));
 
         $server->on('start', function (Server $server) use ($host, $port) {
             if ($host == '0.0.0.0') {
@@ -158,7 +155,6 @@ class HttpServerCommand
         $pids = file_exists($this->pid_file) ? file($this->pid_file) : [];
         $master_pid = isset($pids[0]) ? trim($pids[0]) : 0;
         $manager_pid = isset($pids[1]) ? trim($pids[1]) : 0;
-//            var_dump($master_pid);
 
         $command = "ps aux|grep " . $this->name . "|grep -v grep|grep -v status|awk '{print $2}'";
         $res = exec($command, $output, $return_var);
