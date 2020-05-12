@@ -16,14 +16,15 @@ class TestController
         return 'test index';
     }
 
-    public function dbAction(Connection $connection){
+    public function dbAction(Connection $connection)
+    {
+        $res = [];
         $n = 10;
-        while ($n){
+        while ($n) {
             $res = $connection->fetch('select * from cw_account where id=1');
             sleep(1);
             $n--;
         }
-        //var_dump($res);
         return $res;
     }
 }
