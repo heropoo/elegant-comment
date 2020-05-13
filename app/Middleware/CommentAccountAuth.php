@@ -61,7 +61,7 @@ class CommentAccountAuth
 
     protected function checkOrigin(Account $account, $origin)
     {
-        if (!empty($account->allow_origin) && !empty('origin')) {
+        if (!empty($origin)) {
             $allow_origin = explode(',', $account->allow_origin);
             //header('Access-Control-Allow-Origin:' . $origin);
             if (!in_array($origin, $allow_origin)) {

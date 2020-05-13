@@ -14,6 +14,7 @@ use Moon\Db\Table;
  * @property integer $id 
  * @property string $app_id APP_ID
  * @property string $app_key APP_KEY
+ * @property string $allow_origin 允许访问的域名
  * @property integer $status 0正常 -1禁止
  * @property string $created_at 
  * @property string $updated_at 
