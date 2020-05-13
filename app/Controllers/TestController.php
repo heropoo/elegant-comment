@@ -18,13 +18,7 @@ class TestController
 
     public function dbAction(Connection $connection)
     {
-        $res = [];
-        $n = 10;
-        while ($n) {
-            $res = $connection->fetch('select * from cw_account where id=1');
-            sleep(1);
-            $n--;
-        }
-        return $res;
+        $res = $connection->fetch('select id,app_id from cw_account where id=1');
+        return format_json_response(0, 'ok', ['test' => $res]);
     }
 }
