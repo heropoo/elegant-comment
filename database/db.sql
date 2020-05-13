@@ -3,6 +3,7 @@ CREATE TABLE `cw_account` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `app_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'APP_ID',
   `app_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'APP_KEY',
+  `allow_domain` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '允许访问的域名',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0正常 -1禁止',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
