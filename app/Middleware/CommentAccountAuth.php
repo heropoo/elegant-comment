@@ -8,6 +8,7 @@ namespace App\Middleware;
 
 use App\Models\Account;
 use Closure;
+use Monolog\Logger;
 use Moon\Request\Request;
 
 class CommentAccountAuth
@@ -31,6 +32,10 @@ class CommentAccountAuth
 
         //todo token
 
+        /** @var Logger $logger */
+        $logger = \App::$container->get('logger');
+        $logger->info('request-server: ' . var_export($request->server, 1));
+        $logger->info('request-header: ' . var_export($request->header, 1));
 
         $account = Account::find()
             ->where('app_id=? and app_key=? and status=' . Account::STATUS_NORMAL, [$app_id, $app_key])
