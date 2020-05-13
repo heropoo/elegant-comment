@@ -47,7 +47,12 @@ class CommentAccountAuth
             ];
         }
 
-        $this->checkOrigin($account, $request->header('origin'));
+        if (!$this->checkOrigin($account, $request->header('origin'))) {
+            return [
+                'code' => 403,
+                'msg' => 'Origin not allow'
+            ];
+        }
 
         \App::$container->add('account', $account);
 
@@ -56,13 +61,13 @@ class CommentAccountAuth
 
     protected function checkOrigin(Account $account, $origin)
     {
-        if (!empty($account->allow_origin)) {
+        if (!empty($account->allow_origin) && !empty('origin')) {
             $allow_origin = explode(',', $account->allow_origin);
-            if (in_array($origin, $allow_origin)) {
-                header('Access-Control-Allow-Origin:' . $origin);
+            //header('Access-Control-Allow-Origin:' . $origin);
+            if (!in_array($origin, $allow_origin)) {
+                return false;
             }
-        } else {
-            header('Access-Control-Allow-Origin: ' . env('APP_URL'));
         }
+        return true;
     }
 }
