@@ -21,4 +21,9 @@ class TestController
         $res = $connection->fetch('select id,app_id from cw_account where id=1');
         return format_json_response(0, 'ok', ['test' => $res]);
     }
+
+    public function ssAction()
+    {
+        var_dump($_SERVER);
+    }
 }
