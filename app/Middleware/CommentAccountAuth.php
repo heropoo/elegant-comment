@@ -47,8 +47,22 @@ class CommentAccountAuth
             ];
         }
 
+        $this->checkOrigin($account, $request->header('origin'));
+
         \App::$container->add('account', $account);
 
         return $next($request);
+    }
+
+    protected function checkOrigin(Account $account, $origin)
+    {
+        if (!empty($account->allow_origin)) {
+            $allow_origin = explode(',', $account->allow_origin);
+            if (in_array($origin, $allow_origin)) {
+                header('Access-Control-Allow-Origin:' . $origin);
+            }
+        } else {
+            header('Access-Control-Allow-Origin: ' . env('APP_URL'));
+        }
     }
 }
