@@ -34,12 +34,24 @@ class CommentAccountAuth
 
         /** @var Logger $logger */
         $logger = \App::$container->get('logger');
-        $logger->info('request-server: ' . var_export($request->server, 1));
-        $logger->info('request-header: ' . var_export($request->header, 1));
+//        $logger->info('request-server: ' . var_export($request->server, 1));
+//        $logger->info('request-header: ' . var_export($request->header, 1));
 
-        $account = Account::find()
-            ->where('app_id=? and app_key=? and status=' . Account::STATUS_NORMAL, [$app_id, $app_key])
-            ->first();
+        try {
+            $account = Account::find()
+                ->where('app_id=? and app_key=? and status=' . Account::STATUS_NORMAL, [$app_id, $app_key])
+                ->first();
+        } catch (\PDOException $e) {
+            if ($e->getCode() == 'HY000') {
+                Account::getDb()->disconnect(); //断开重连
+                $logger->info(__METHOD__ . ':数据库断开重连');
+                $account = Account::find()
+                    ->where('app_id=? and app_key=? and status=' . Account::STATUS_NORMAL, [$app_id, $app_key])
+                    ->first();
+            }
+
+        }
+
         if (empty($account)) {
             return [
                 'code' => 401,
