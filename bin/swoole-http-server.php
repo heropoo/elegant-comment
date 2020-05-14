@@ -89,9 +89,9 @@ class SwooleHttpServerCommand
         $app = new Application($this->root_path);
 
         $httpServer->on('request', function (Request $request, Response $response) use ($app) {
-            Swoole\Runtime::enableCoroutine();
-            Co\run(function () use ($app, $request, $response) {
-                go(function () use ($app, $request, $response) {
+//            Swoole\Runtime::enableCoroutine();
+//            Co\run(function () use ($app, $request, $response) {
+//                go(function () use ($app, $request, $response) {
                     $res = $app->handleSwooleRequest($request, $response);
 
                     //access log
@@ -101,8 +101,8 @@ class SwooleHttpServerCommand
                     $msg .= isset($server['query_string']) ? '?' . $server['query_string'] : '';
                     $msg .= ' ' . $res->getStatusCode();
                     echo $msg . PHP_EOL;
-                });
-            });
+//                });
+//            });
 
         });
 
