@@ -9,6 +9,7 @@
     }
   ],
   "require": {
+    "php": ">=7.1",
     "ext-json": "*",
     "ext-pdo": "*",
     "heropoo/moon": "^0.12",

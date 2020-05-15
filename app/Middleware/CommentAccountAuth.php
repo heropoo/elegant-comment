@@ -10,6 +10,7 @@ use App\Models\Account;
 use Closure;
 use Monolog\Logger;
 use Moon\Request\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CommentAccountAuth
 {
@@ -79,7 +80,12 @@ class CommentAccountAuth
             if (!in_array($origin, $allow_origin)) {
                 return false;
             }
+
+            /** @var Response $response */
+            $response = \App::$container->get('response');
+            $response->headers->set('Access-Control-Allow-Origin', $origin);
         }
+
         return true;
     }
 }
