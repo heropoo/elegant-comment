@@ -11,7 +11,7 @@
   "require": {
     "ext-json": "*",
     "ext-pdo": "*",
-    "heropoo/moon": "^0.11.4",
+    "heropoo/moon": "^0.12",
     "nesbot/carbon": "^2.32",
     "heropoo/pagination": "^0.2.1"
   },
@@ -23,6 +23,11 @@
     "files": [
       "libraries/helpers.php"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
   },
   "require-dev": {
     "swoole/ide-helper": "^4.5"
