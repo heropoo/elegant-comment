@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `cw_account`;
-CREATE TABLE `cw_account` (
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE `account` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `app_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'APP_ID',
   `app_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'APP_KEY',
@@ -10,8 +10,8 @@ CREATE TABLE `cw_account` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='账户表';
 
-DROP TABLE IF EXISTS `cw_user`;
-CREATE TABLE `cw_user` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
   `head_img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
@@ -24,8 +24,8 @@ CREATE TABLE `cw_user` (
   UNIQUE KEY `email_account_id` (`email`,`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
 
-DROP TABLE IF EXISTS `cw_comment`;
-CREATE TABLE `cw_comment` (
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `article_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章id',
   `parent_comment_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '回复评论的id',

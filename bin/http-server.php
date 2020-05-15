@@ -11,11 +11,11 @@ use Swoole\Http\Request;
 use Swoole\Http\Response;
 use Moon\Application;
 
-$command = new SwooleHttpServerCommand();
+$command = new HttpServerCommand();
 $command->execute();
 
 
-class SwooleHttpServerCommand
+class HttpServerCommand
 {
     protected $name;
     protected $pid_file;

@@ -11,6 +11,6 @@ class IndexController
 {
     public function index()
     {
-        return '<a href="https://github.com/heropoo/pretty-comment">Pretty Comment</a> v0.2';
+        return '<a href="https://github.com/heropoo/elegant-comment">Elegant Comment</a> v0.2';
     }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "pretty-comment",
+  "name": "elegant-comment",
   "version": "0.1.0",
-  "description": "Pretty Comment System",
+  "description": "Elegant Comment System",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -9,18 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/heropoo/pretty-comment.git"
+    "url": "git+https://github.com/heropoo/elegant-comment.git"
   },
   "keywords": [
+    "elegant",
+    "elegant-comment",
     "comment",
     "comment-system"
   ],
   "author": "Heropoo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/heropoo/pretty-comment/issues"
+    "url": "https://github.com/heropoo/elegant-comment/issues"
   },
-  "homepage": "https://github.com/heropoo/pretty-comment#readme",
+  "homepage": "https://github.com/heropoo/elegant-comment#readme",
   "devDependencies": {
     "css-loader": "^3.5.3",
     "style-loader": "^1.2.1",

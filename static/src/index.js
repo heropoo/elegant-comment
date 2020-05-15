@@ -26,14 +26,13 @@ const commentTpl = `
             </div>
         </form>
         <div class="comment-copyright">
-            &copy; Powered By <a href="https://github.com/heropoo/pretty-comment">PrettyComment</a>
+            &copy; Powered By <a href="https://github.com/heropoo/elegant-comment">ElegantComment</a>
         </div>
     </div>
 
     <div class="comment-total"> 共有 0 条评论</div>
 
     <div class="comment-list">
-
         <!-- <div class="comment-item">
             <div class="comment-avatar">
                 <img src="images/10.jpeg" alt="">
@@ -43,18 +42,19 @@ const commentTpl = `
                 <div>2020-04-17 17:54</div>
                 <div style="color: #333">啊哈哈哈哈哈哈哈4234234哈哈哈哈哈哈哈哈哈哈</div>
             </div>
-        </div>
-
-        -->
-
+        </div>-->
     </div>
 </div>
 `;
 
-class PrettyComment {
+class ElegantComment {
 
     constructor(config) {
-        this.api = '//p.metmoon.com';
+        if (config.api) {
+            this.api = config.api;
+        } else {
+            this.api = '//p.metmoon.com';
+        }
         //this.api = '//127.0.0.1:4000';
         this.app_id = config.app_id;
         this.app_key = config.app_key;
@@ -146,4 +146,4 @@ class PrettyComment {
     }
 }
 
-window.PrettyComment = PrettyComment;
+window.ElegantComment = ElegantComment;

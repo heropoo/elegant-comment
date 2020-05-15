@@ -5,7 +5,7 @@ module.exports = {
     entry: './static/src/index.js',
     output: {
         path: path.resolve(__dirname, 'public/dist'),
-        filename: 'pretty-comment.js'
+        filename: 'elegant-comment.js'
     },
     module: {
         rules: [
