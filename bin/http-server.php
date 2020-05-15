@@ -14,7 +14,6 @@ use Moon\Application;
 $command = new HttpServerCommand();
 $command->execute();
 
-
 class HttpServerCommand
 {
     protected $name;
@@ -89,21 +88,16 @@ class HttpServerCommand
         $app = new Application($this->root_path);
 
         $httpServer->on('request', function (Request $request, Response $response) use ($app) {
-//            Swoole\Runtime::enableCoroutine();
-//            Co\run(function () use ($app, $request, $response) {
-//                go(function () use ($app, $request, $response) {
-                    $res = $app->handleSwooleRequest($request, $response);
 
-                    //access log
-                    $server = $request->server;
-                    $msg = '[' . date('Y-m-d H:i:s') . '] ' . $server['remote_addr'] . ':' . $server['remote_port']
-                        . ' ' . $server['request_method'] . ':' . $server['path_info'];
-                    $msg .= isset($server['query_string']) ? '?' . $server['query_string'] : '';
-                    $msg .= ' ' . $res->getStatusCode();
-                    echo $msg . PHP_EOL;
-//                });
-//            });
+            $res = $app->handleSwooleRequest($request, $response);
 
+            //access log
+            $server = $request->server;
+            $msg = '[' . date('Y-m-d H:i:s') . '] ' . $server['remote_addr'] . ':' . $server['remote_port']
+                . ' ' . $server['request_method'] . ':' . $server['path_info'];
+            $msg .= isset($server['query_string']) ? '?' . $server['query_string'] : '';
+            $msg .= ' ' . $res->getStatusCode();
+            echo $msg . PHP_EOL;
         });
 
         file_put_contents($this->last_config_file, json_encode(['host' => $host, 'port' => $port, 'daemon' => $daemon]));
