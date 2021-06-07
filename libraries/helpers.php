@@ -10,7 +10,7 @@
  * @param array $data
  * @return array
  */
-function format_json_response($code, $msg = 'OK', array $data = [])
+function format_json_response(int $code, string $msg = 'OK', array $data = []): array
 {
     return [
         'code' => $code,
